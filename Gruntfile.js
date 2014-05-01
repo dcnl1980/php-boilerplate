@@ -21,16 +21,6 @@ module.exports = function(grunt) {
           dest: 'public/css',
           ext: '.css'
         }]
-      },
-      release: {
-        files: [{
-          expand: true,
-          cwd: 'public/scss',
-          src: ['*.scss'],
-          dest: 'public/css',
-          ext: '.css',
-          style: 'compressed'
-        }]
       }
     },
     cssmin: {
@@ -42,23 +32,36 @@ module.exports = function(grunt) {
         ext: '.min.css'
       }
     },
+    uglify: {
+      minify: {
+        files: [{
+            expand: true,
+            cwd: 'public/js',
+            src: ['*.js', '!*.min.js'],
+            dest: 'public/js',
+            ext: '.min.js'
+        }]
+      }
+    },
     watch: {
       testing: {
         files: ['public/coffee/*', 'public/scss/*'],
-        tasks: ['coffee', 'sass:testing']
+        tasks: ['coffee', 'sass']
       },
       release: {
         files: ['public/coffee/*', 'public/scss/*'],
-        tasks: ['coffee', 'sass:release', 'cssmin:minify']
+        tasks: ['coffee', 'sass', 'cssmin', 'uglify']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
+  grunt.registerTask('build', ['coffee', 'sass', 'cssmin', 'uglify'])
   grunt.registerTask('minimized', ['watch:release']);
   grunt.registerTask('default', ['watch:testing']);
 
