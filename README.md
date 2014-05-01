@@ -23,7 +23,10 @@ Now you have to edit the config file at `application/config/config.php`. There i
 ##Documentation
 For general instructions and a very good tutorial see [here](https://github.com/panique/php-mvc-advanced).
 ####Grunt
-During everyday developing you just have to call `grunt` without any parameters. This will start a `watch` task, which will recompile your `scss` and `coffee` files every time you change them.
+During everyday developing you just have to call `grunt` without any parameters. This will start a `watch` task, which will recompile your `scss` and `coffee` files every time you change them. At the moment there are two other options for `grunt`:
+
+* `grunt minimized` - Also starts a `watch` task, but will also minimize css and uglify js.
+* `grunt build` - This will compile and compress everything once and end. It will not watch for changes.
 
 ##License
 This project is licensed under MIT.
