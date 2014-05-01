@@ -28,7 +28,7 @@ class Songs extends Controller
         $amount_of_songs = $stats_model->getAmountOfSongs();
 
         // render the view, pass the data
-        $this->render('songs/index', array('songs' => $songs, 'amount_of_songs' => $amount_of_songs));
+        $this->render('songs/index', array('page_title' => 'Song list', 'songs' => $songs, 'amount_of_songs' => $amount_of_songs));
     }
 
     /**
