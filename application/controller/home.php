@@ -16,7 +16,7 @@ class Home extends Controller
      */
     public function index()
     {
-        $this->render('home/index');
+        $this->render('home/index', array('page_title' => 'Hello World'));
     }
 
     /**
@@ -26,7 +26,7 @@ class Home extends Controller
      */
     public function exampleOne()
     {
-        $this->render('home/example_one');
+        $this->render('home/example_one', array('page_title' => 'First example'));
     }
 
     /**
@@ -36,6 +36,6 @@ class Home extends Controller
      */
     public function exampleTwo()
     {
-        $this->render('home/example_two');
+        $this->render('home/example_two', array('page_title' => 'Second example'));
     }
 }
