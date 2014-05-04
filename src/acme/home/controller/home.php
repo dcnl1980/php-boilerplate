@@ -1,5 +1,7 @@
 <?php
 
+namespace acme\home\controller;
+
 /**
  * Class Home
  *
@@ -8,7 +10,7 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Home extends Controller
+class home extends \phpBoilerplate\core\controller
 {
     /**
      * PAGE: index
@@ -16,7 +18,7 @@ class Home extends Controller
      */
     public function index()
     {
-        $this->render('home/index', array('page_title' => 'Hello World'));
+        $this->render('index', array('page_title' => 'Hello World'));
     }
 
     /**
@@ -26,7 +28,7 @@ class Home extends Controller
      */
     public function exampleOne()
     {
-        $this->render('home/example_one', array('page_title' => 'First example'));
+        $this->render('example_one', array('page_title' => 'First example'));
     }
 
     /**
@@ -36,6 +38,6 @@ class Home extends Controller
      */
     public function exampleTwo()
     {
-        $this->render('home/example_two', array('page_title' => 'Second example'));
+        $this->render('example_two', array('page_title' => 'Second example'));
     }
 }
