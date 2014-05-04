@@ -1,6 +1,8 @@
 <?php
 
-class SongsModel
+namespace acme\songs\models;
+
+class songsModel
 {
     /**
      * Every model needs a database connection, passed to the model

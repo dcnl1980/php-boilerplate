@@ -1,12 +1,11 @@
 <?php
 
 /**
- * A simple PHP MVC skeleton
+ * A simple PHP MVC framework. Based on php-mvc-advanced.
  *
- * @package php-mvc
- * @author Panique
- * @link http://www.php-mvc.net
- * @link https://github.com/panique/php-mvc/
+ * @author Mawalu
+ * @link https://github.com/mawalu/php-boilerplate/
+ * @link https://github.com/panique/php-mvc-advanced
  * @license http://opensource.org/licenses/MIT MIT License
  */
 

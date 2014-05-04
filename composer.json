@@ -18,9 +18,8 @@
     },
     "autoload": {
         "psr-0": {
-            "phpBoilerplate\\core": "src/",
-            "acme\\home": "src/",
-            "acme\\songs": "src/"
+            "phpBoilerplate": "src/",
+            "acme": "src/"
 
         }
     },

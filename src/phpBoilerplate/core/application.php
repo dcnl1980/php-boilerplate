@@ -4,7 +4,7 @@ namespace phpBoilerplate\core;
 
 class application
 {
-    /** @var null the requested url. Splited at / */
+    /** @var array the requested url. Splited at / */
     private $urlParts = array();
 
     /** @var null The controller */
@@ -21,7 +21,6 @@ class application
 
         // get class and methode to call
         $route = $this->getRoute();
-        
 
         /**
          * example: if controller would be "car" and the method would be "open", then this lines would translate into:
@@ -64,7 +63,13 @@ class application
                 $compare = '/' . $this->urlParts[$i-$ii-1] . $compare;
             }
             if(isset($routes[$compare])) {
-                return explode(':', $routes[$compare]);
+                $return = explode(':', $routes[$compare]);
+                if (sizeof($return) == 1) {
+                    // @see http://davidwalsh.name/php-shorthand-if-else-ternary-operators
+                    $method = (isset($this->urlParts[1]) ? $this->urlParts[1] : 'index');
+                    return array($routes[$compare], $method);
+                }
+                return $return;
             }
         }
 
