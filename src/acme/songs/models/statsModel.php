@@ -1,6 +1,8 @@
 <?php
 
-class StatsModel
+namespace acme\songs\models;
+
+class statsModel
 {
     /**
      * Every model needs a database connection, passed to the model

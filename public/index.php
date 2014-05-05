@@ -1,26 +1,22 @@
 <?php
 
 /**
- * A simple PHP MVC skeleton
+ * A simple PHP MVC framework. Based on php-mvc-advanced.
  *
- * @package php-mvc
- * @author Panique
- * @link http://www.php-mvc.net
- * @link https://github.com/panique/php-mvc/
+ * @author Mawalu
+ * @link https://github.com/mawalu/php-boilerplate/
+ * @link https://github.com/panique/php-mvc-advanced
  * @license http://opensource.org/licenses/MIT MIT License
  */
 
-// load application config (error reporting etc.)
-require '../application/config/config.php';
+/** 
+ * Load composer and config constants
+ *
+ * @todo replace global config constants with something ... better
+ */
 
-// load the (optional) Composer auto-loader
-if (file_exists(ROOT_DIR . '/vendor/autoload.php')) {
-    require ROOT_DIR . '/vendor/autoload.php';
-}
-
-// load application class
-require ROOT_DIR . '/application/libs/application.php';
-require ROOT_DIR . '/application/libs/controller.php';
+require '../vendor/autoload.php';
+require '../src/config/config.php';
 
 // start the application
-$app = new Application();
+$app = new phpBoilerplate\core\application();

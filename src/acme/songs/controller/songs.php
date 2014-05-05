@@ -1,5 +1,7 @@
 <?php
 
+namespace acme\songs\controller;
+
 /**
  * Class Songs
  * This is a demo class.
@@ -9,7 +11,7 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Songs extends Controller
+class songs extends \phpBoilerplate\core\controller
 {
     /**
      * PAGE: index
@@ -19,16 +21,16 @@ class Songs extends Controller
     {
         // load a model, perform an action, pass the returned data to a variable
         // NOTE: please write the name of the model "LikeThis"
-        $songs_model = $this->loadModel('SongsModel');
+        $songs_model = $this->loadModel('acme\songs\models\songsModel');
         $songs = $songs_model->getAllSongs();
 
         // load another model, perform an action, pass the returned data to a variable
         // NOTE: please write the name of the model "LikeThis"
-        $stats_model = $this->loadModel('StatsModel');
+        $stats_model = $this->loadModel('acme\songs\models\statsModel');
         $amount_of_songs = $stats_model->getAmountOfSongs();
 
         // render the view, pass the data
-        $this->render('songs/index', array('page_title' => 'Song list', 'songs' => $songs, 'amount_of_songs' => $amount_of_songs));
+        $this->render('index', array('page_title' => 'Song list', 'songs' => $songs, 'amount_of_songs' => $amount_of_songs));
     }
 
     /**
@@ -44,7 +46,7 @@ class Songs extends Controller
         // if we have POST data to create a new song entry
         if (isset($_POST["submit_add_song"])) {
             // load model, perform an action on the model
-            $songs_model = $this->loadModel('SongsModel');
+            $songs_model = $this->loadModel('acme\songs\models\songsModel');
             $songs_model->addSong($_POST["artist"], $_POST["track"],  $_POST["link"]);
         }
 
@@ -59,15 +61,16 @@ class Songs extends Controller
      * directs the user after the click. This method handles all the data from the GET request (in the URL!) and then
      * redirects the user back to songs/index via the last line: header(...)
      * This is an example of how to handle a GET request.
-     * @param int $song_id Id of the to-delete song
+     * @param array $urlParts The requested url. Splited at /
      */
-    public function deleteSong($song_id)
+    public function deleteSong($urlParts)
     {
+        print_r($urlParts);
         // if we have an id of a song that should be deleted
-        if (isset($song_id)) {
+        if (isset($urlParts[2])) {
             // load model, perform an action on the model
-            $songs_model = $this->loadModel('SongsModel');
-            $songs_model->deleteSong($song_id);
+            $songs_model = $this->loadModel('acme\songs\models\songsModel');
+            $songs_model->deleteSong($urlParts[2]);
         }
 
         // where to go after song has been deleted
