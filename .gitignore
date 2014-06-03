@@ -4,3 +4,4 @@ node_modules/
 public/css/*
 public/js/*
 .sass-cache/
+.idea/*

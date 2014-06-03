@@ -19,13 +19,13 @@ class application
         // create array with URL parts in $url
         $this->splitUrl();
 
-        // get class and methode to call
+        // get class and method to call
         $route = $this->getRoute();
 
         /**
          * example: if controller would be "car" and the method would be "open", then this lines would translate into:
-         * $this->car = new car();
-         * $this->car->open($this->urlParts);
+         * $this->controller = new car();
+         * $this->controller->open($this->urlParts);
          */
         $this->controller = new $route[0];
         $this->controller->{$route[1]}($this->urlParts);
@@ -37,8 +37,9 @@ class application
      */
     private function splitUrl()
     {
-
-        if($_SERVER['REQUEST_URI'] == '/') {
+        // We don't want GET parameters here
+        $request = explode("?", $_SERVER['REQUEST_URI']);
+        if($request [0] == '/') {
             // nothing special requested. We show the homepage
             $this->urlParts[0] = 'home';
         } else {

@@ -44,7 +44,7 @@ class controller
     }
 
     /**
-     * Get the current dir using reflectin
+     * Get the current dir using reflection
      * @link http://stackoverflow.com/questions/3896384/php-how-to-get-dir-of-child-class
      */
     private function getDir()
@@ -58,7 +58,8 @@ class controller
      * loadModel("SongModel") would include models/songmodel.php and create the object in the controller, like this:
      * $songs_model = $this->loadModel('SongsModel');
      * Note that the model class name is written in "CamelCase", the model's filename is the same in lowercase letters
-     * @param string $model_name The name of the model
+     *
+     * @param $modelName
      * @return object model
      */
     public function loadModel($modelName)
