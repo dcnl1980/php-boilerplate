@@ -1,0 +1,4 @@
+- yamlstring: test
+- yamlarray:
+  - [test, array]
+  - test
