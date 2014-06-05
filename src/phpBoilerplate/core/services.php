@@ -2,27 +2,32 @@
 
 namespace phpBoilerplate\core;
 
+/**
+ * Class services
+ * @package phpBoilerplate\core
+ */
 class services
 {
+    /**
+     * @var array
+     */
     private $services = array();
 
+    /**
+     * Register a new service
+     * @param array $service
+     */
     public function registerService(array $service)
     {
        $this->services[] = $service;
     }
 
-    public function getServices()
-    {
-        $return = array();
-
-        foreach($this->services as $service)
-        {
-            $return[] = $service[1];
-        }
-
-        return $return;
-    }
-
+    /**
+     * Get a class registered as service
+     * @param $service
+     *
+     * @return mixed
+     */
     public function getService($service)
     {
         foreach($this->services as $aService) {

@@ -6,6 +6,6 @@
  */
 
 $routes = array(
-	"/home" => "acme\home\controller\home",
-	"/songs" => "acme\songs\controller\songs"
-	);
+    "/home" => "acme\home\controller\home",
+    "/songs" => "acme\songs\controller\songs"
+);

@@ -2,6 +2,10 @@
 
 namespace phpBoilerplate\core;
 
+/**
+ * Class application
+ * @package phpBoilerplate\core
+ */
 class application
 {
     /** @var array the requested url. Splited at / */
@@ -10,8 +14,14 @@ class application
     /** @var null The controller */
     private $controller = null;
 
+    /**
+     * @var null|config
+     */
     private $config = null;
 
+    /**
+     * @var null
+     */
     private $services = null;
 
     /**
@@ -23,6 +33,9 @@ class application
         $this->config = $config;
     }
 
+    /**
+     * Handle the HTTP request
+     */
     public function handleRequest()
     {
         // create array with URL parts in $url
@@ -43,6 +56,9 @@ class application
         $this->controller->{$route[1]}($this->urlParts);
     }
 
+    /**
+     * Initialize all the services
+     */
     private function setupServices()
     {
         $this->services = new services();
@@ -78,13 +94,13 @@ class application
     }
 
     /**
-     * get the routing information for a url
+     * Get the routing information for a url
      * @todo include routing information somewhere else
      */
     private function getRoute()
     {
         // include routing information
-        require $this->config->getConfigValue("rootDir") . '/src/config/routing.php';
+        require $this->config->getConfigValue("rootDir") . '/config/routing.php';
 
         for ($i = sizeof($this->urlParts); $i > 0; $i--) {
             $compare = '';

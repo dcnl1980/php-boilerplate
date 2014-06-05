@@ -4,6 +4,7 @@ namespace phpBoilerplate\core;
 
 /**
  * This is the "base controller class". All other "real" controllers extend this class.
+ * @package phpBoilerplate\core
  */
 class controller
 {
@@ -13,8 +14,14 @@ class controller
      */
     protected $dir = null;
 
+    /**
+     * @var null|config
+     */
     protected $config = null;
 
+    /**
+     * @var null|services
+     */
     protected $services = null;
 
     /**
@@ -53,6 +60,11 @@ class controller
         return new $modelName($this->config, $this->services);
     }
 
+    /**
+     * Renders a twig template
+     * @param $view
+     * @param array $dataArray
+     */
     protected function render($view, $dataArray = array())
     {
         // add the site url as twig variable
