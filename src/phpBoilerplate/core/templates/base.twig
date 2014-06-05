@@ -6,8 +6,8 @@
         <title>{{ page_title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="{{ constant('URL') }}css/normalize.min.css">
-        <link rel="stylesheet" href="{{ constant('URL') }}css/main.css">
+        <link rel="stylesheet" href="{{ url }}css/normalize.min.css">
+        <link rel="stylesheet" href="{{ url }}css/main.css">
         {% block header %} {% endblock %}
 
         <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
         {% block content %} {% endblock %}
 
 
-        <script src="{{ constant('URL') }}js/vendor/jquery-1.11.0.min.js"></script>
-        <script src="{{ constant('URL') }}js/main.js"></script>
+        <script src="{{ url }}js/vendor/jquery-1.11.0.min.js"></script>
+        <script src="{{ url }}js/main.js"></script>
         {% block footer %} {% endblock %}
     </body>
 </html>

@@ -16,7 +16,11 @@
  */
 
 require '../vendor/autoload.php';
-require '../src/config/config.php';
+
+// load application configuration
+$config = new phpBoilerplate\core\config();
+$config->parseYamlFolder(dirname(__FILE__) . "/../config");
 
 // start the application
-$app = new phpBoilerplate\core\application();
+$app = new phpBoilerplate\core\application($config);
+$app->handleRequest();

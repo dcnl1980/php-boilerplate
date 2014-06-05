@@ -7,40 +7,25 @@ namespace phpBoilerplate\core;
  */
 class controller
 {
-    /**
-     * @var null Database Connection
-     */
-    public $db = null;
 
     /**
      * @var null Path to current folder
      */
     private $dir = null;
 
+    private $config = null;
+
+    private $services = null;
+
     /**
      * Whenever a controller is created, open a database connection too. The idea behind is to have ONE connection
      * that can be used by multiple models (there are frameworks that open one connection per model).
      */
-    function __construct()
+    function __construct(config $config, services $services)
     {
-        $this->openDatabaseConnection();
+        $this->config = $config;
+        $this->services = $services;
         $this->getDir();
-    }
-
-    /**
-     * Open the database connection with the credentials from application/config/config.php
-     */
-    private function openDatabaseConnection()
-    {
-        // set the (optional) options of the PDO connection. in this case, we set the fetch mode to
-        // "objects", which means all results will be objects, like this: $result->user_name !
-        // For example, fetch mode FETCH_ASSOC would return results like this: $result["user_name] !
-        // @see http://www.php.net/manual/en/pdostatement.fetch.php
-        $options = array(\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING);
-
-        // generate a database connection, using the PDO connector
-        // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
-        $this->db = new \PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS, $options);
     }
 
     /**
@@ -65,17 +50,20 @@ class controller
     public function loadModel($modelName)
     {
         // return new model (and pass the database connection to the model)
-        return new $modelName($this->db);
+        return new $modelName($this->config, $this->services);
     }
 
-    public function render($view, $data_array = array())
+    public function render($view, $dataArray = array())
     {
+        // add the site url as twig variable
+        $dataArray["url"] = $this->config->getConfigValue("url");
+
         // load Twig, the template engine
         // @see http://twig.sensiolabs.org
-        $twig_loader = new \Twig_Loader_Filesystem(array($this->dir . '/../views/', ROOT_DIR .'/src/phpBoilerplate/core/templates/'));
+        $twig_loader = new \Twig_Loader_Filesystem(array($this->dir . '/../views/', $this->config->getConfigValue("rootDir") .'/src/phpBoilerplate/core/templates/'));
         $twig = new \Twig_Environment($twig_loader);
 
         // render a view while passing the to-be-rendered data
-        echo $twig->render($view . PATH_VIEW_FILE_TYPE, $data_array);
+        echo $twig->render($view . ".twig", $dataArray);
     }
 }
