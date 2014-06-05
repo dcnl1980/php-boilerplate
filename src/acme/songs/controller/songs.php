@@ -2,6 +2,8 @@
 
 namespace acme\songs\controller;
 
+use phpBoilerplate\core\controller;
+
 /**
  * Class Songs
  * This is a demo class.
@@ -11,8 +13,9 @@ namespace acme\songs\controller;
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class songs extends \phpBoilerplate\core\controller
+class songs extends controller
 {
+
     /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/songs/index
@@ -74,6 +77,6 @@ class songs extends \phpBoilerplate\core\controller
         }
 
         // where to go after song has been deleted
-        header('location: ' . URL . 'songs/index');
+        header('location: ' . $this->config->getConfigValue("url") . 'songs/index');
     }
 }

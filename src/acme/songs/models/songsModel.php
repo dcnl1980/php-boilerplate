@@ -2,18 +2,23 @@
 
 namespace acme\songs\models;
 
+use phpBoilerplate\core\services;
+
 class songsModel
 {
+    private $config;
+
+    private $services;
+
     /**
-     * Every model needs a database connection, passed to the model
-     * @param object $db A PDO database connection
+     * @param $config
+     * @param $services
      */
-    function __construct($db) {
-        try {
-            $this->db = $db;
-        } catch (PDOException $e) {
-            exit('Database connection could not be established.');
-        }
+    function __construct($config, services $services) {
+        $this->config = $config;
+        $this->services = $services;
+
+        $this->db = $this->services->getService("database");
     }
 
     /**

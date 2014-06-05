@@ -11,17 +11,17 @@ class controller
     /**
      * @var null Path to current folder
      */
-    private $dir = null;
+    protected $dir = null;
 
-    private $config = null;
+    protected $config = null;
 
-    private $services = null;
+    protected $services = null;
 
     /**
      * Whenever a controller is created, open a database connection too. The idea behind is to have ONE connection
      * that can be used by multiple models (there are frameworks that open one connection per model).
      */
-    function __construct(config $config, services $services)
+    public function __construct(config $config, services $services)
     {
         $this->config = $config;
         $this->services = $services;
@@ -32,7 +32,7 @@ class controller
      * Get the current dir using reflection
      * @link http://stackoverflow.com/questions/3896384/php-how-to-get-dir-of-child-class
      */
-    private function getDir()
+    protected function getDir()
     {
         $info = new \ReflectionClass($this);
         $this->dir = dirname($info->getFileName());
@@ -47,13 +47,13 @@ class controller
      * @param $modelName
      * @return object model
      */
-    public function loadModel($modelName)
+    protected function loadModel($modelName)
     {
         // return new model (and pass the database connection to the model)
         return new $modelName($this->config, $this->services);
     }
 
-    public function render($view, $dataArray = array())
+    protected function render($view, $dataArray = array())
     {
         // add the site url as twig variable
         $dataArray["url"] = $this->config->getConfigValue("url");

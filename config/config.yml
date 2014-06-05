@@ -1,8 +1,8 @@
-- url: http://php-boilerplate.loc
-- rootDir: /srv/http/php-boilerplate
+url: http://php-boilerplate.loc/
+rootDir: /srv/http/php-boilerplate
 
-- dbType: mysql
-- dbHost: 127.0.0.1
-- dbName: php-mvc
-- dbUser: root
-- dbPass:
+dbType: mysql
+dbHost: 127.0.0.1
+dbName: php-mvc
+dbUser: root
+dbPass:

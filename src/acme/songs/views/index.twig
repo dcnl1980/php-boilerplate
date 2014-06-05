@@ -5,7 +5,7 @@
         <!-- add song form -->
         <div>
             <h3>Add a song</h3>
-            <form action="{{ constant('URL') }}songs/addsong" method="POST">
+            <form action="{{ url }}songs/addsong" method="POST">
                 <label>Artist</label>
                 <input type="text" name="artist" value="" required />
                 <label>Track</label>
@@ -44,7 +44,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ constant('URL') }}songs/deletesong/{{ song.id }}">x</a>
+                            <a href="{{ url }}songs/deletesong/{{ song.id }}">x</a>
                         </td>
                     </tr>
                 {% endfor %}
